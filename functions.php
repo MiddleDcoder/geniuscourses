@@ -7,6 +7,14 @@
  * @package Geniuscourses
  */
 
+function geniuscourses_enqueue_scripts(){
+	wp_enqueue_style('geniuscourses-general', get_template_directory_uri().'/assets/css/general.css', array(), '1.0', 'all');
+
+	wp_enqueue_script('geniuscourses-script', get_template_directory_uri().'/assets/js/script.js', array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
+
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
