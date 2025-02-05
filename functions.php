@@ -8,9 +8,13 @@
  */
 
 function geniuscourses_enqueue_scripts(){
-	wp_enqueue_style('geniuscourses-general', get_template_directory_uri().'/assets/css/general.css', array(), '1.0', 'all');
+	wp_register_style('geniuscourses-general', get_template_directory_uri().'/assets/css/general.css', array(), '1.0', 'all');
 
-	wp_enqueue_script('geniuscourses-script', get_template_directory_uri().'/assets/js/script.js', array('jquery'), '1.0', true);
+	wp_register_script('geniuscourses-script', get_template_directory_uri().'/assets/js/script.js', array('jquery'), '1.0', true);
+
+	wp_enqueue_style('geniuscourses-general');
+	
+	wp_enqueue_script('geniuscourses-script');
 }
 add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
 
