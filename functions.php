@@ -7,12 +7,17 @@
  * @package Geniuscourses
  */
 
+ /**
+ * Enqueue scripts and styles.
+ */
 function geniuscourses_enqueue_scripts(){
 	wp_enqueue_style('geniuscourses-general', get_template_directory_uri().'/assets/css/general.css', array(), '1.0', 'all');
 
 	wp_enqueue_script('geniuscourses-script', get_template_directory_uri().'/assets/js/script.js', array('jquery'), '1.0', true);
 
-	wp_enqueue_script('thickbox');
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
 
@@ -146,20 +151,6 @@ function geniuscourses_widgets_init() {
 }
 add_action( 'widgets_init', 'geniuscourses_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function geniuscourses_scripts() {
-	wp_enqueue_style( 'geniuscourses-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'geniuscourses-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'geniuscourses-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'geniuscourses_scripts' );
 
 /**
  * Implement the Custom Header feature.
