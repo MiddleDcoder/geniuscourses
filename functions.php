@@ -23,7 +23,12 @@ add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
 
 
 function geniuscourses_body_class($classes){
-	$classes[] = 'main-class';
+
+	if(is_front_page()){
+		$classes[] = 'main-class';
+	} else if (is_singular()){
+		$classes[] = 'extra-class';
+	}
 
 	return $classes;
 }
