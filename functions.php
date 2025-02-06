@@ -22,19 +22,13 @@ function geniuscourses_enqueue_scripts (){
 add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
 
 
-function geniuscourses_body_class($classes){
-
-	if(is_front_page()){
-		$classes[] = 'main-class';
-	} else if (is_singular()){
-		$classes[] = 'extra-class';
-	}
-
-	return $classes;
+function geniuscourses_register_menus(){
+	register_nav_menus(array(
+		'header_nav' => 'Header Navigation',
+		'footer_nav' => 'Footer Navigation'
+	));
 }
-add_filter('body_class', 'geniuscourses_body_class');
-
-
+add_action('after_setup_theme', 'geniuscourses_register_menus', 0);
 
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -76,12 +70,6 @@ function geniuscourses_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'geniuscourses' ),
-		)
-	);
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
