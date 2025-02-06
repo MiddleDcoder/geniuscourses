@@ -26,7 +26,10 @@
 <?php
 	wp_nav_menu(
 		array(
-			'theme_location' => 'header_nav'
+			'theme_location' => 'header_nav',
+			'menu_class' => 'myclass',
+			'container' => 'div',
+			'depth' => '2'
 		)
 	);
 ?>
