@@ -22,13 +22,12 @@ function geniuscourses_enqueue_scripts (){
 add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
 
 
-function geniuscourses_show_meta(){
-	echo "<meta name='author' content='JiiLdono' >";
+function geniuscourses_body_class($classes){
+	$classes[] = 'main-class';
+
+	return $classes;
 }
-add_action('wp_head', 'geniuscourses_show_meta', 10);
-
-
-
+add_filter('body_class', 'geniuscourses_body_class');
 
 
 
