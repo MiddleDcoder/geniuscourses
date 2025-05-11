@@ -22,13 +22,30 @@ function geniuscourses_enqueue_scripts (){
 add_action('wp_enqueue_scripts', 'geniuscourses_enqueue_scripts');
 
 
-function geniuscourses_register_menus(){
+function geniuscourses_theme_init(){
 	register_nav_menus(array(
 		'header_nav' => 'Header Navigation',
 		'footer_nav' => 'Footer Navigation'
 	));
+
+/* 		
+		* Switch default core markup for search form, comment form, and comments
+		* to output valid HTML5.
+		*/
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			)
+		);
 }
-add_action('after_setup_theme', 'geniuscourses_register_menus', 0);
+add_action('after_setup_theme', 'geniuscourses_theme_init', 0);
 
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -71,22 +88,6 @@ function geniuscourses_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 
-	/*
-		* Switch default core markup for search form, comment form, and comments
-		* to output valid HTML5.
-		*/
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support(

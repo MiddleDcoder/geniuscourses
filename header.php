@@ -32,4 +32,6 @@
 			'depth' => '2'
 		)
 	);
+
+	get_search_form();
 ?>
